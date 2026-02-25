@@ -1,4 +1,12 @@
 import { EbookData } from "@/components/EbookCard";
+import cover1 from "@/assets/covers/cover-1.jpg";
+import cover2 from "@/assets/covers/cover-2.jpg";
+import cover3 from "@/assets/covers/cover-3.jpg";
+import cover4 from "@/assets/covers/cover-4.jpg";
+import cover5 from "@/assets/covers/cover-5.jpg";
+import cover6 from "@/assets/covers/cover-6.jpg";
+import cover7 from "@/assets/covers/cover-7.jpg";
+import cover8 from "@/assets/covers/cover-8.jpg";
 
 export const categories = [
   "All",
@@ -17,7 +25,7 @@ export const ebooks: EbookData[] = [
     author: "Dr. Elena Marsh",
     price: 14.99,
     originalPrice: 24.99,
-    coverUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=600&fit=crop",
+    coverUrl: cover1,
     category: "AI & Machine Learning",
     rating: 4.8,
     reviewCount: 342,
@@ -30,7 +38,7 @@ export const ebooks: EbookData[] = [
     author: "Kai Rodriguez",
     price: 12.99,
     originalPrice: 19.99,
-    coverUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=600&fit=crop",
+    coverUrl: cover2,
     category: "AI & Machine Learning",
     rating: 4.6,
     reviewCount: 198,
@@ -43,7 +51,7 @@ export const ebooks: EbookData[] = [
     author: "Sarah Chen",
     price: 19.99,
     originalPrice: 34.99,
-    coverUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=600&fit=crop",
+    coverUrl: cover3,
     category: "Business & Strategy",
     rating: 4.9,
     reviewCount: 521,
@@ -55,7 +63,7 @@ export const ebooks: EbookData[] = [
     title: "Deep Focus: Productivity in the Age of Distraction",
     author: "Marcus Webb",
     price: 9.99,
-    coverUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=600&fit=crop",
+    coverUrl: cover4,
     category: "Productivity",
     rating: 4.5,
     reviewCount: 156,
@@ -67,7 +75,7 @@ export const ebooks: EbookData[] = [
     author: "Ava Thornton",
     price: 11.99,
     originalPrice: 17.99,
-    coverUrl: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=600&fit=crop",
+    coverUrl: cover5,
     category: "Creative Writing",
     rating: 4.7,
     reviewCount: 234,
@@ -78,7 +86,7 @@ export const ebooks: EbookData[] = [
     title: "Unbreakable Habits: The 90-Day System",
     author: "Dr. James Park",
     price: 13.99,
-    coverUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop",
+    coverUrl: cover6,
     category: "Personal Development",
     rating: 4.4,
     reviewCount: 178,
@@ -90,7 +98,7 @@ export const ebooks: EbookData[] = [
     author: "Zara Okafor",
     price: 16.99,
     originalPrice: 29.99,
-    coverUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=600&fit=crop",
+    coverUrl: cover7,
     category: "Technology",
     rating: 4.3,
     reviewCount: 112,
@@ -102,7 +110,7 @@ export const ebooks: EbookData[] = [
     author: "Michael Torres",
     price: 17.99,
     originalPrice: 27.99,
-    coverUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop",
+    coverUrl: cover8,
     category: "Business & Strategy",
     rating: 4.6,
     reviewCount: 289,
