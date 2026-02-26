@@ -105,11 +105,11 @@ export default function Dashboard() {
             </div>
 
             <Tabs defaultValue="library" className="space-y-6">
-              <TabsList className="glass">
-                <TabsTrigger value="library" className="gap-2"><BookOpen className="h-4 w-4" />My Library</TabsTrigger>
-                <TabsTrigger value="downloads" className="gap-2"><Download className="h-4 w-4" />Downloads</TabsTrigger>
-                <TabsTrigger value="profile" className="gap-2"><User className="h-4 w-4" />Profile</TabsTrigger>
-                <TabsTrigger value="security" className="gap-2"><Shield className="h-4 w-4" />Security</TabsTrigger>
+              <TabsList className="glass w-full flex-wrap h-auto gap-1 p-1">
+                <TabsTrigger value="library" className="gap-1.5 text-xs sm:text-sm flex-1 min-w-0"><BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /><span className="truncate">My Library</span></TabsTrigger>
+                <TabsTrigger value="downloads" className="gap-1.5 text-xs sm:text-sm flex-1 min-w-0"><Download className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /><span className="truncate">Downloads</span></TabsTrigger>
+                <TabsTrigger value="profile" className="gap-1.5 text-xs sm:text-sm flex-1 min-w-0"><User className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /><span className="truncate">Profile</span></TabsTrigger>
+                <TabsTrigger value="security" className="gap-1.5 text-xs sm:text-sm flex-1 min-w-0"><Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /><span className="truncate">Security</span></TabsTrigger>
               </TabsList>
 
               <TabsContent value="library">
@@ -145,21 +145,21 @@ export default function Dashboard() {
                     <p className="text-muted-foreground">No download history yet.</p>
                   </div>
                 ) : (
-                  <div className="glass overflow-hidden">
-                    <table className="w-full text-sm">
+                  <div className="glass overflow-x-auto">
+                    <table className="w-full text-sm min-w-[400px]">
                       <thead>
                         <tr className="border-b border-border">
-                          <th className="text-left p-4 text-muted-foreground font-medium">Title</th>
-                          <th className="text-left p-4 text-muted-foreground font-medium">Author</th>
-                          <th className="text-left p-4 text-muted-foreground font-medium">Date</th>
+                          <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Title</th>
+                          <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium hidden sm:table-cell">Author</th>
+                          <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         {downloads.map((d) => (
                           <tr key={d.id} className="border-b border-border/50">
-                            <td className="p-4">{d.ebooks?.title || "Unknown"}</td>
-                            <td className="p-4 text-muted-foreground">{d.ebooks?.author || "—"}</td>
-                            <td className="p-4 text-muted-foreground">{new Date(d.downloaded_at).toLocaleDateString()}</td>
+                            <td className="p-3 sm:p-4">{d.ebooks?.title || "Unknown"}</td>
+                            <td className="p-3 sm:p-4 text-muted-foreground hidden sm:table-cell">{d.ebooks?.author || "—"}</td>
+                            <td className="p-3 sm:p-4 text-muted-foreground">{new Date(d.downloaded_at).toLocaleDateString()}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -169,7 +169,7 @@ export default function Dashboard() {
               </TabsContent>
 
               <TabsContent value="profile">
-                <div className="glass glow-border p-6 max-w-lg space-y-4">
+                <div className="glass glow-border p-4 sm:p-6 max-w-lg space-y-4">
                   <div className="space-y-2">
                     <Label>Display Name</Label>
                     <Input value={profile.display_name || ""} onChange={(e) => setProfile({ ...profile, display_name: e.target.value })} />
@@ -194,7 +194,7 @@ export default function Dashboard() {
               </TabsContent>
 
               <TabsContent value="security">
-                <div className="glass glow-border p-6 max-w-lg space-y-4">
+                <div className="glass glow-border p-4 sm:p-6 max-w-lg space-y-4">
                   <h3 className="font-display font-semibold">Change Password</h3>
                   <p className="text-sm text-muted-foreground">
                     To change your password, use the password reset flow. We'll send a link to your email.
