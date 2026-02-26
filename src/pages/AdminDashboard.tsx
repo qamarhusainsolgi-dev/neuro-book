@@ -167,9 +167,9 @@ export default function AdminDashboard() {
             </div>
 
             <Tabs defaultValue="ebooks" className="space-y-6">
-              <TabsList className="glass">
-                <TabsTrigger value="ebooks" className="gap-2"><BookOpen className="h-4 w-4" />Ebooks</TabsTrigger>
-                <TabsTrigger value="sales" className="gap-2"><BarChart3 className="h-4 w-4" />Sales</TabsTrigger>
+              <TabsList className="glass w-full sm:w-auto h-auto p-1">
+                <TabsTrigger value="ebooks" className="gap-1.5 text-xs sm:text-sm flex-1 sm:flex-none"><BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4" />Ebooks</TabsTrigger>
+                <TabsTrigger value="sales" className="gap-1.5 text-xs sm:text-sm flex-1 sm:flex-none"><BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />Sales</TabsTrigger>
               </TabsList>
 
               <TabsContent value="ebooks">
@@ -200,23 +200,23 @@ export default function AdminDashboard() {
                   </motion.div>
                 )}
 
-                <div className="glass overflow-hidden">
-                  <table className="w-full text-sm">
+                <div className="glass overflow-x-auto">
+                  <table className="w-full text-sm min-w-[360px]">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left p-4 text-muted-foreground font-medium">Title</th>
-                        <th className="text-left p-4 text-muted-foreground font-medium hidden sm:table-cell">Category</th>
-                        <th className="text-left p-4 text-muted-foreground font-medium">Price</th>
-                        <th className="text-right p-4 text-muted-foreground font-medium">Actions</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Title</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium hidden sm:table-cell">Category</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Price</th>
+                        <th className="text-right p-3 sm:p-4 text-muted-foreground font-medium">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {ebooks.map((ebook) => (
                         <tr key={ebook.id} className="border-b border-border/50">
-                          <td className="p-4 font-medium">{ebook.title}</td>
-                          <td className="p-4 text-muted-foreground hidden sm:table-cell">{ebook.category}</td>
-                          <td className="p-4">${ebook.price}</td>
-                          <td className="p-4 text-right space-x-2">
+                          <td className="p-3 sm:p-4 font-medium max-w-[150px] sm:max-w-none truncate">{ebook.title}</td>
+                          <td className="p-3 sm:p-4 text-muted-foreground hidden sm:table-cell">{ebook.category}</td>
+                          <td className="p-3 sm:p-4">${ebook.price}</td>
+                          <td className="p-3 sm:p-4 text-right space-x-2">
                             <button onClick={() => startEdit(ebook)} className="text-primary hover:text-primary/80"><Edit className="h-4 w-4 inline" /></button>
                             <button onClick={() => handleDelete(ebook.id)} className="text-destructive hover:text-destructive/80"><Trash2 className="h-4 w-4 inline" /></button>
                           </td>
@@ -231,21 +231,21 @@ export default function AdminDashboard() {
               </TabsContent>
 
               <TabsContent value="sales">
-                <div className="glass overflow-hidden">
-                  <table className="w-full text-sm">
+                <div className="glass overflow-x-auto">
+                  <table className="w-full text-sm min-w-[320px]">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left p-4 text-muted-foreground font-medium">Date</th>
-                        <th className="text-left p-4 text-muted-foreground font-medium">Amount</th>
-                        <th className="text-left p-4 text-muted-foreground font-medium">User ID</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Date</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium">Amount</th>
+                        <th className="text-left p-3 sm:p-4 text-muted-foreground font-medium hidden sm:table-cell">User ID</th>
                       </tr>
                     </thead>
                     <tbody>
                       {purchases.map((p) => (
                         <tr key={p.id} className="border-b border-border/50">
-                          <td className="p-4">{new Date(p.created_at).toLocaleDateString()}</td>
-                          <td className="p-4 font-medium">${p.amount_paid}</td>
-                          <td className="p-4 text-muted-foreground text-xs">{p.user_id.slice(0, 8)}...</td>
+                          <td className="p-3 sm:p-4">{new Date(p.created_at).toLocaleDateString()}</td>
+                          <td className="p-3 sm:p-4 font-medium">${p.amount_paid}</td>
+                          <td className="p-3 sm:p-4 text-muted-foreground text-xs hidden sm:table-cell">{p.user_id.slice(0, 8)}...</td>
                         </tr>
                       ))}
                     </tbody>
