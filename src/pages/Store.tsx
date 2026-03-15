@@ -41,11 +41,11 @@ export default function Store() {
       <section className="section-padding">
         <div className="container-narrow">
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <h1 className="text-3xl sm:text-5xl font-display font-bold mb-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
                 Explore Our <span className="text-gradient-primary">Library</span>
               </h1>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-xs sm:text-base text-muted-foreground max-w-xl mx-auto">
                 Browse AI-assisted ebooks across categories. Find your next breakthrough read.
               </p>
             </div>
@@ -53,8 +53,8 @@ export default function Store() {
 
           {/* Search & Filters */}
           <ScrollReveal delay={0.1}>
-            <div className="glass p-4 sm:p-6 mb-8 space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4">
+            <div className="glass p-3 sm:p-6 mb-6 sm:mb-8 space-y-3 sm:space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
@@ -62,15 +62,15 @@ export default function Store() {
                     placeholder="Search by title, author, or topic..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                    className="w-full pl-10 pr-4 py-2 sm:py-2.5 rounded-lg bg-secondary border border-border text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
+                  <SlidersHorizontal className="h-4 w-4 text-muted-foreground shrink-0" />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                    className="bg-secondary border border-border rounded-lg px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="bg-secondary border border-border rounded-lg px-3 py-2 sm:py-2.5 text-xs sm:text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 w-full sm:w-auto"
                   >
                     <option value="default">Default</option>
                     <option value="price-asc">Price: Low to High</option>
@@ -80,12 +80,12 @@ export default function Store() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                    className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium transition-all duration-200 ${
                       activeCategory === cat
                         ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
                         : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
@@ -99,8 +99,8 @@ export default function Store() {
           </ScrollReveal>
 
           {/* Results */}
-          <div className="mb-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="mb-3 sm:mb-4">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {filtered.length} ebook{filtered.length !== 1 ? "s" : ""} found
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function Store() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6"
             >
               {filtered.map((ebook, i) => (
                 <ScrollReveal key={ebook.id} delay={i * 0.05}>
@@ -123,9 +123,9 @@ export default function Store() {
           </AnimatePresence>
 
           {filtered.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg">No ebooks match your search.</p>
-              <p className="text-muted-foreground/60 text-sm mt-2">Try adjusting your filters or search query.</p>
+            <div className="text-center py-16 sm:py-20">
+              <p className="text-muted-foreground text-base sm:text-lg">No ebooks match your search.</p>
+              <p className="text-muted-foreground/60 text-xs sm:text-sm mt-2">Try adjusting your filters or search query.</p>
             </div>
           )}
         </div>
