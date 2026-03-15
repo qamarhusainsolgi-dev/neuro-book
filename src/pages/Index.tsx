@@ -46,7 +46,7 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center overflow-hidden">
         <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
           <HeroScene />
         </Suspense>
