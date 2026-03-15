@@ -112,6 +112,9 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <div className="flex justify-center py-2">
+              <ThemeToggle />
+            </div>
             <div className="pt-2 flex flex-col gap-2">
               {!loading && user ? (
                 <>
