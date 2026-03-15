@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Menu, X, LogOut, LayoutDashboard } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
@@ -52,6 +53,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           {!loading && user ? (
             <>
               <Button variant="ghost" size="sm" asChild>
@@ -110,6 +112,9 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <div className="flex justify-center py-2">
+              <ThemeToggle />
+            </div>
             <div className="pt-2 flex flex-col gap-2">
               {!loading && user ? (
                 <>
