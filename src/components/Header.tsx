@@ -53,6 +53,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           {!loading && user ? (
             <>
               <Button variant="ghost" size="sm" asChild>
