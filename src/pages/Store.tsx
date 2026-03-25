@@ -3,13 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import EbookCard from "@/components/EbookCard";
 import ScrollReveal from "@/components/ScrollReveal";
-import { ebooks, categories } from "@/data/ebooks";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { useEbooks, useCategories } from "@/hooks/useEbooks";
+import { Search, SlidersHorizontal, Loader2 } from "lucide-react";
 
 export default function Store() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc" | "rating">("default");
+
+  const { data: ebooks = [], isLoading } = useEbooks();
+  const { data: categories = ["All"] } = useCategories();
 
   const filtered = useMemo(() => {
     let result = ebooks.filter((e) => {
@@ -34,7 +37,17 @@ export default function Store() {
     }
 
     return result;
-  }, [searchQuery, activeCategory, sortBy]);
+  }, [ebooks, searchQuery, activeCategory, sortBy]);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
-import { ebooks } from "@/data/ebooks";
-import { Star, ShoppingCart, Download, CheckCircle2, ArrowLeft, BookOpen } from "lucide-react";
+import { useEbook } from "@/hooks/useEbooks";
+import { Star, ShoppingCart, CheckCircle2, ArrowLeft, Loader2 } from "lucide-react";
 
 function Book3D({ coverUrl, title }: { coverUrl: string; title: string }) {
   return (
@@ -20,22 +20,15 @@ function Book3D({ coverUrl, title }: { coverUrl: string; title: string }) {
         className="relative"
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Book cover */}
         <div className="relative rounded-lg overflow-hidden shadow-2xl" style={{ transform: "rotateY(5deg)" }}>
-          <img
-            src={coverUrl}
-            alt={title}
-            className="w-full aspect-[3/4] object-cover"
-          />
+          <img src={coverUrl} alt={title} className="w-full aspect-[3/4] object-cover" />
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10" />
         </div>
-        {/* Book spine effect */}
         <div
           className="absolute top-0 left-0 w-4 h-full bg-primary/20 rounded-l-sm"
           style={{ transform: "rotateY(-90deg) translateZ(8px)" }}
         />
       </motion.div>
-      {/* Shadow */}
       <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-48 h-4 bg-primary/10 blur-xl rounded-full" />
     </motion.div>
   );
@@ -51,7 +44,17 @@ const benefits = [
 
 export default function EbookDetail() {
   const { id } = useParams();
-  const ebook = ebooks.find((e) => e.id === id);
+  const { data: ebook, isLoading } = useEbook(id);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </Layout>
+    );
+  }
 
   if (!ebook) {
     return (
@@ -77,7 +80,6 @@ export default function EbookDetail() {
     <Layout>
       <section className="section-padding">
         <div className="container-narrow">
-          {/* Breadcrumb */}
           <ScrollReveal>
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
               <Link to="/store" className="hover:text-primary transition-colors">Store</Link>
@@ -87,14 +89,12 @@ export default function EbookDetail() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Book visual */}
             <ScrollReveal>
               <div className="flex items-center justify-center py-8">
                 <Book3D coverUrl={ebook.coverUrl} title={ebook.title} />
               </div>
             </ScrollReveal>
 
-            {/* Details */}
             <ScrollReveal delay={0.2}>
               <div className="space-y-6">
                 <div>
@@ -119,7 +119,10 @@ export default function EbookDetail() {
 
                 <p className="text-foreground/80 leading-relaxed">{ebook.shortDescription}</p>
 
-                {/* Price */}
+                {ebook.longDescription && (
+                  <p className="text-sm text-muted-foreground leading-relaxed">{ebook.longDescription}</p>
+                )}
+
                 <div className="glass p-6 glow-border">
                   <div className="flex items-baseline gap-3 mb-4">
                     <span className="text-4xl font-display font-bold text-foreground">${ebook.price}</span>
@@ -143,7 +146,6 @@ export default function EbookDetail() {
                   </div>
                 </div>
 
-                {/* Benefits */}
                 <div className="space-y-3">
                   <h3 className="font-display font-semibold text-foreground">What You'll Get</h3>
                   {benefits.map((benefit) => (

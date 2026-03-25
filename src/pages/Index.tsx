@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import EbookCard from "@/components/EbookCard";
 import Layout from "@/components/Layout";
-import { ebooks } from "@/data/ebooks";
+import { useEbooks } from "@/hooks/useEbooks";
 import { ArrowRight, BookOpen, Shield, Zap, Brain, Sparkles, Download } from "lucide-react";
 
 const HeroScene = lazy(() => import("@/components/HeroScene"));
@@ -41,6 +41,7 @@ const stats = [
 ];
 
 export default function Index() {
+  const { data: ebooks = [] } = useEbooks();
   const featured = ebooks.slice(0, 4);
 
   return (
